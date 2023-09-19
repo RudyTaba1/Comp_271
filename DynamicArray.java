@@ -256,5 +256,5 @@ int pos = 0;
 }
 //indexOf method
 }
-
+//nice
 
