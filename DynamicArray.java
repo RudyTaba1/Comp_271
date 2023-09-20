@@ -1,5 +1,5 @@
 import java.util.Arrays;
-//only use the .toString function
+//only use the .toString() function
 
 public class DynamicArray {
     
@@ -215,9 +215,9 @@ public boolean contains(String serch){
 //The method assumes baseline is false, 
     boolean con = false;
     //the mehod will go through the array
-    for(int i = 0; i <= this.data.length; i++) {
+    for(int i = 0; i <= this.nextAvailable-1; i++) {
         //once the method detects that the element = the serch parameter, it will flip con to true
-        if(this.data[i].equals(serch) && this.data[i]==null){
+        if(this.data[i].equals(serch)){
 
             con = true;
         }
@@ -255,6 +255,44 @@ int pos = 0;
     return pos;
 }
 //indexOf method
+
+/**
+ * method compares two different arrays to see whether or not they are the same.
+ * @param other is the other array.
+ * @return will return the difference between the total amount of elements in each array.
+ */
+public int compareTo(DynamicArray other){
+    
+    return this.size()-other.size();
+}
+/**
+ * accessor method for nextAvaliable
+ */
+public int getnextAvailable(){
+    return this.nextAvailable;
+}
+/**
+ * method size() returns the size of the array
+ * @return will return the size of the array
+ */
+public int size(){
+    return this.getnextAvailable()-1;
+}
+/**
+ * toString method will return the contents and the amount of objects in that array.
+ * 
+ */
+public String toString(){
+    String sting = String.format("this object has an underlying array with %d elements", this.data.length);
+    sting += String.format("\n%d of these elements are used", this.getnextAvailable());
+    sting += String.format("\n Contents:");
+    for (int i = 0; i < this.nextAvailable; i++){
+        sting += String.format("\n %s", this.data[i]);
+    }
+    return sting;
+}
+//method toString
+
 }
 //nice
 
