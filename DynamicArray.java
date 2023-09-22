@@ -215,18 +215,22 @@ public boolean contains(String serch){
 //The method assumes baseline is false, 
     boolean con = false;
     //the mehod will go through the array
+   
     
-    if(serch==null){
-        con = true;
-    }
-    if(serch!=null){
+    //keep getting null pointer exception error, and do not know how to fix it. None of my solutions are working.
+    //null means, literally, nothing. Therefore, the code camnot point at nothing. That doesn't work. That being said, clearing the exception is quite difficult.
 
-    for(int i = 0; i <= this.nextAvailable;i++) {
+    if(serch!=null){
+        
+        int i = 0;
+    while(i <= this.nextAvailable && this.data[i]!=null) {
         //once the method detects that the element = the serch parameter, it will flip con to true
         if(this.data[i].equals(serch)){
-
             con = true;
         }
+
+        i++;
+        
 
     }
 }
@@ -242,17 +246,23 @@ public boolean contains(String serch){
 public int indexOf(String wordAt){
 int pos = 0;
 
+    if(wordAt==null){
+        pos = this.nextAvailable;
+    }
+
     //if contains returns false, then pos will return -1, which means it is not in the array
-    if(this.contains(wordAt)){
+    if(this.contains(wordAt)==false){
         pos = -1;
 
     }
     //if contains returns true, then go through the array until the element in the array = @param wordAt
-    if(!this.contains(wordAt)){
+    if(this.contains(wordAt)==true){
         //for loop sorts through the array
-        for(int i = 0; i <= this.data.length; i++){
+        
+        int i = 0;
+        while(i <= this.nextAvailable && this.data[i]!=null){
             //will check if wordAt == data[i]
-            if(this.data[i].equals(wordAt)){
+            if(this.data[i].equals(wordAt)&& this.data[i]!=null){
              //if it is, pos will = i
                 pos = i;
             }
@@ -302,5 +312,3 @@ public String toString(){
 //method toString
 
 }
-//nice
-
