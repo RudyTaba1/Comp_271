@@ -215,13 +215,21 @@ public boolean contains(String serch){
 //The method assumes baseline is false, 
     boolean con = false;
     //the mehod will go through the array
-    for(int i = 0; i <= this.nextAvailable-1; i++) {
+    
+    if(serch==null){
+        con = true;
+    }
+    if(serch!=null){
+
+    for(int i = 0; i <= this.nextAvailable;i++) {
         //once the method detects that the element = the serch parameter, it will flip con to true
         if(this.data[i].equals(serch)){
 
             con = true;
         }
+
     }
+}
     return con;
 }
 //contains method
