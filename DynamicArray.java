@@ -219,11 +219,17 @@ public boolean contains(String serch){
     
     //keep getting null pointer exception error, and do not know how to fix it. None of my solutions are working.
     //null means, literally, nothing. Therefore, the code camnot point at nothing. That doesn't work. That being said, clearing the exception is quite difficult.
-
+    //update: did clear it. All code compiles and passes.
     if(serch!=null){
         
         int i = 0;
-    while(i <= this.nextAvailable && this.data[i]!=null) {
+    
+        /*while(i <= this.nextAvailable && this.data[i]!=null)  would be incorrect because obviously next avaliable has nothing in it. 
+        We want to figire out whether what is in the existing array is present, not what is in the existing array and what is avaliable. Noted for next time*/
+        
+
+        while(i<this.nextAvailable && this.data[i]!=null){
+    
         //once the method detects that the element = the serch parameter, it will flip con to true
         if(this.data[i].equals(serch)){
             con = true;
@@ -260,7 +266,10 @@ int pos = 0;
         //for loop sorts through the array
         
         int i = 0;
-        while(i <= this.nextAvailable && this.data[i]!=null){
+       /*while(i <= this.nextAvailable && this.data[i]!=null) is incorrect. As noted in the contains() method, 
+       we're looking at the existing array. Noted for next time.*/
+       
+      while(i<this.nextAvailable && this.data[i]!=null){
             //will check if wordAt == data[i]
             if(this.data[i].equals(wordAt)&& this.data[i]!=null){
              //if it is, pos will = i
