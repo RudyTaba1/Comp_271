@@ -252,9 +252,7 @@ public boolean contains(String serch){
 public int indexOf(String wordAt){
 int pos = 0;
 
-    if(wordAt==null){
-        pos = this.nextAvailable;
-    }
+
 
     //if contains returns false, then pos will return -1, which means it is not in the array
     if(this.contains(wordAt)==false){
