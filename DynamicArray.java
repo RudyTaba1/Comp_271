@@ -281,6 +281,27 @@ int pos = 0;
     
     return pos;
 }
+/*
+ * public int indexOf(string wordAt){
+ * pos = -1;
+ * int index = 0;
+ * while(index < this.nextAvailable && this.data[index]!=null){
+ * if(this.data[index].equals(wordAt)){
+ * pos = index;
+ * index++;
+ *}
+ * return pos;
+ * }
+ * 
+ * String[] demo = new String[3];
+ * demo[0] = "hello";
+ * demo[1] = "my";
+ * demo[2] = "name";
+ * demo[3] = "Rudy";
+ * System.out.printf("\n %s \n", this.demo[3]);
+ * 
+ * return pos;}
+ */
 //indexOf method
 
 /**
