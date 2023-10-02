@@ -5,7 +5,13 @@
  * always at the end of the line, and that's why it's important to know
  * where the last station is.
  */
-public class TrainLine {
+
+ /**
+  * Interfaces: essencially a contract. Using the implements keyword, you can use many differnt interfaces.
+  The Compare to interface it will compare two elemenets in the arry and look at their positional data.
+  Compare object a position - object b position.
+  */
+public class TrainLine implements Comparable<TrainLine>{
 
   /** Constant with message for string representation of an empty line */
   private static final String EMPTY_LINE = "This train line has no stations.";
@@ -27,6 +33,12 @@ public class TrainLine {
   /**
    * Default constructor. Sets both first and last stations to null.
    */
+/**
+ * 
+ */
+  private int numberOfstations;
+
+
   public TrainLine() {
     this.first = null;
     this.last = null;
@@ -51,6 +63,7 @@ public class TrainLine {
     }
     // Update the last station to the newly added station
     this.last = newStation;
+    this.numberOfstations++;
   } // method addStation
 
   /**
@@ -116,5 +129,11 @@ public class TrainLine {
     }
     return slow;
   }
+
+public int compareTo(TrainLine compto){
+    return this.numberOfstations - compto.numberOfstations;
+
+}
+
 
 } // class TrainLine
