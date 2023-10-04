@@ -1,3 +1,4 @@
+package WeekSix;
 public class TrainStation {
 
   /** The name of the train station */

@@ -1,3 +1,4 @@
+package WeekSix;
 /**
  * A class that simulates a train line by linking train station objects 
  * together. The class uses two train station objects to define a train
@@ -6,7 +7,7 @@
  * where the last station is.
  */
 
- /**
+/**
   * Interfaces: essencially a contract. Using the implements keyword, you can use many differnt interfaces.
   The Compare to interface it will compare two elemenets in the arry and look at their positional data.
   Compare object a position - object b position.

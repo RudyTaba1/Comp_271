@@ -1,3 +1,4 @@
+package WeekSix;
 import java.util.Date;
 
 public class person {
@@ -8,8 +9,8 @@ public class person {
     public person(){
         this.name = "Rudy";
         this.Lname =" Tabachnik";
-
-    }
+        
+        }
     public String toString(){
        return "my name is " + this.name + this.Lname;
     }

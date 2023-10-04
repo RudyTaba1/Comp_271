@@ -1,3 +1,6 @@
+import WeekSix.TrainLine;
+import WeekSix.person;
+
 public class Main {
     public static void main(String[] args){
         // Realistic line
