@@ -12,7 +12,7 @@ package WeekSix;
   The Compare to interface it will compare two elemenets in the arry and look at their positional data.
   Compare object a position - object b position.
   */
-public class TrainLine implements Comparable<TrainLine>{
+public class TrainLine{
 
   /** Constant with message for string representation of an empty line */
   private static final String EMPTY_LINE = "This train line has no stations.";
@@ -66,6 +66,17 @@ public class TrainLine implements Comparable<TrainLine>{
     this.last = newStation;
     this.numberOfstations++;
   } // method addStation
+
+
+  public void addStation(TrainStation trainStation) {
+    if (this.first == null) {
+      this.first = trainStation;
+    } else {
+      this.last.setNext(trainStation);
+    }
+    this.last = trainStation;
+  } // method addStation
+
 
   /**
    * Determine if a train station with a given name exists in the train line.
@@ -131,10 +142,55 @@ public class TrainLine implements Comparable<TrainLine>{
     return slow;
   }
 
-public int compareTo(TrainLine compto){
-    return this.numberOfstations - compto.numberOfstations;
 
+/**
+ * indexOf() method passes through @param station to search for whether or not
+ * the station exists in the line. @param station is then passed through @param search
+ * in order to use the .equals method in the TrainStation object.
+ * If the object exists, then the @param pos will @return @param sta. If it does
+ * not exist, @param pos will return -1.
+ */
+public int indexOf(String station){
+  //passes through string station
+  TrainStation search = this.first;
+  //initial position if false
+  int pos = -1;
+  //initializes stations.
+  int sta = 0;
+    //avoids pointing at nothing.
+    while(search != null){
+      
+      if(search.getName().equals(station)){
+        pos = sta;
+      }
+      search = search.getNext();
+      sta++;
+ }
+
+  return pos;
 }
+//method indexOf()
 
-
-} // class TrainLine
+public boolean hasLoop() {
+  boolean loop = false;
+  // Runs code for traversing through trainline
+      if (this.first != null) {
+    // Use two pointers to traverse train line from beginning.
+    // Slow traverses one station at a time.
+    // Fast traverses skips a station and goes to the one after that
+    TrainStation slow = this.first;
+    TrainStation fast = this.first;
+    // Traverse as long as fast pointer has somewhere to go
+    while (fast.hasNext() && fast.getNext().hasNext()) {
+      // Fast goes to its next stations' next station
+      fast = fast.getNext().getNext();
+      // Slow goes to its next station
+      slow = slow.getNext();
+    }
+  // When traversing through the trainline, if there is a loop, slow and fast will meet once
+  if (slow == fast) {
+    loop = true;
+  }
+} return loop;
+}//method hasLoop()
+  } // class TrainLine
