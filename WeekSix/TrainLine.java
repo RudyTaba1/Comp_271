@@ -171,26 +171,30 @@ public int indexOf(String station){
 }
 //method indexOf()
 
-public boolean hasLoop() {
-  boolean loop = false;
-  // Runs code for traversing through trainline
-      if (this.first != null) {
-    // Use two pointers to traverse train line from beginning.
-    // Slow traverses one station at a time.
-    // Fast traverses skips a station and goes to the one after that
-    TrainStation slow = this.first;
+/** 
+   * Determine if there is a loop in the trainline 
+   *
+   * @return true if a loop exists, false otherwise 
+   */
+public boolean hasLoop(){
+  boolean found = false;
+    
     TrainStation fast = this.first;
-    // Traverse as long as fast pointer has somewhere to go
-    while (fast.hasNext() && fast.getNext().hasNext()) {
-      // Fast goes to its next stations' next station
-      fast = fast.getNext().getNext();
-      // Slow goes to its next station
+    TrainStation slow = this.first;
+
+
+    if(this.first != null){
+    while(!found && fast.hasNext() && fast.getNext().hasNext()){
       slow = slow.getNext();
+      fast = fast.getNext().getNext();
+      if(slow.equals(fast)){
+        found = true;
+      }
+      
     }
-  // When traversing through the trainline, if there is a loop, slow and fast will meet once
-  if (slow == fast) {
-    loop = true;
   }
-} return loop;
-}//method hasLoop()
+    
+
+return found;
+   }//method hasLoop()
   } // class TrainLine
