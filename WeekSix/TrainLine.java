@@ -247,9 +247,16 @@ return found;
 
    public boolean insert(String afterName, String newName){
     boolean success = false;
+
+    TrainStation cursor = this.first;
+    TrainStation nCursor = this.last;
+
       
     while(this.first!=null){
-
+      if(this.contains(afterName)){
+        this.numberOfstations++;
+        cursor.setNext(nCursor);
+      }
     }
     
     
