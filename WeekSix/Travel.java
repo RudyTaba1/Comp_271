@@ -2,7 +2,7 @@ package WeekSix;
 
 public interface Travel {
 
-    public void sleep();
-    public void takeOff();
-    
+  public void board();
+  public void sleep();
+  
 }
