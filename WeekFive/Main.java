@@ -1,68 +1,48 @@
 
-import WeekSix.TrainLine;
-import WeekSix.TrainStation;
+import MidTerm.InNOut;
 
-
-public class Main {
-
-  private static final String TEST_REPORT = "\n\nMethod .insert() %S some or all the tests.\n\n";
-
+class Main {
   public static void main(String[] args) {
-    // Realistic line
-    TrainLine redLineSB = new TrainLine();
-    // Station names to add to line
-    String[] stationNames = { "Howard", "Morse",
-        "Loyola", "Thorndale", "Bryn Mawr" };
-    // Empty line
-    TrainLine mauveLine = new TrainLine();
-    // Populate line with the stations
-    for (String name : stationNames)
-      redLineSB.addStation(name);
-    // Set up the testing
-    String afterStation, newStation;
-    // First test
-    afterStation = "Howard";
-    newStation = "Jarvis";
-    boolean test1_insert = redLineSB.insert(afterStation, newStation);
-    boolean test1_verify = redLineSB.toString().contains(newStation);
-    // Second test
-    afterStation = "Bryn Mawr";
-    newStation = "Berwyn";
-    boolean test2_insert = redLineSB.insert(afterStation, newStation);
-    boolean test2_verify = redLineSB.toString().contains(newStation);
-    // Third test
-    afterStation = null;
-    newStation = "Morse";
-    boolean test3_before = redLineSB.insert(afterStation, newStation);
-    boolean test3_after = redLineSB.insert(newStation, afterStation);
-    boolean test3_both = redLineSB.insert(null, null);
-    // Fourth test
-    afterStation = "Jarvis";
-    newStation = "Jarvis";
-    boolean test4 = redLineSB.insert(afterStation, newStation);
-    // First test
-    afterStation = "Hogsmeade";
-    newStation = "Hogwarts";
-    boolean test5 = mauveLine.insert(afterStation, newStation);
-    // Test summary
-    boolean test = ((test1_insert && test1_verify) &&
-        (test2_insert && test2_verify) &&
-        !test3_before && !test3_after && !test3_both &&
-        !test4 &&
-        !test5);
-    // Report test results
-    String outcome = (test) ? "passed" : "failed";
-    System.out.printf(TEST_REPORT, outcome);
-    // Case-by-case reporting
-    outcome = (test1_insert && test1_verify) ? "passed" : "failed";
-    System.out.printf("%s\tTest 1 (insertion after first)\n", outcome);
-    outcome = (test2_insert && test2_verify) ? "passed" : "failed";
-    System.out.printf("%s\tTest 2 (insertion after last)\n", outcome);
-    outcome = (!test3_before && !test3_after && !test3_both) ? "passed" : "failed";
-    System.out.printf("%s\tTest 3 (null argument)\n", outcome);
-    outcome = (!test4) ? "passed" : "failed";
-    System.out.printf("%s\tTest 4 (duplicate station)\n", outcome);
-    outcome = (!test5) ? "passed" : "failed";
-    System.out.printf("%s\tTest 5 (empty TrainLine)\n\n", outcome);
-  }
-}
+    final String PUSH =   "  Push test";
+    final String POP =    "   Pop test";
+    final String APPEND = "Append test";
+    String[] testData = {
+        "Thrumdell",
+        "Glimmerforge",
+        "Mistveil",
+        "Oakenthorn"
+    }; // Middle earth sounding localities
+    InNOut testObject = new InNOut(4);
+    boolean test1 = true;
+    for (String item: testData) {
+      test1 = test1 && testObject.push(item);
+      System.out.println(testObject);
+    }
+    test1 = test1 && !testObject.push("Ravencliff");
+    String outcome = (test1) ? "Successful" : "Not successful";
+    System.out.printf("\n\n%s: %s", PUSH, outcome);
+    int i = testData.length-1;
+    boolean test2 = true;
+    while (i >=0 && testObject.getSize()>0) {
+      test2 = test2 && testObject.pop().equals(testData[i--]);
+    }
+    test2 = test2 && testObject.pop() == null;
+    outcome = (test2) ? "Successful" : "Not successful";
+    System.out.printf("\n%s: %s", POP, outcome);
+    boolean test3 = true;
+    for (String item: testData) {
+      test3 = test3 && testObject.append(item);
+    }
+    test3 = test3 && !testObject.append("Ravencliff");
+    outcome = (test3) ? "Successful" : "Not successful";
+    System.out.printf("\n%s: %s", APPEND, outcome);
+    boolean test4 = true;
+    i = 0;
+    while (i < testData.length && testObject.getSize() > 0) {
+      test4 = test4 && testObject.pop().equals(testData[i++]);
+    }
+    test4 = test4 && testObject.pop() == null;
+    outcome = (test4) ? "Successful" : "Not successful";
+    System.out.printf("\n%s: %s\n\n", POP, outcome);
+  } // main
+} // Main
