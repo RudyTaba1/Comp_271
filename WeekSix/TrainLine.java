@@ -244,28 +244,49 @@ return found;
     } // guard if against empty TrainLine 
   } // method deleteStation
 
+/**
+ * the insert method passes through two string objects @param afterName and @param newName, in order to 
+ * to update and add a trainstation to the trainline, while also returning a boolean value @param success, letting the user
+ * know whether the insert and update operation was done successfully.  If the existing parameters are already in the trainline,
+ * then @param success will be set to false, as these parameters already exist in the trainline.
+ * 
+ * The method completes the inserting by setting the @param nN, which passes through new newName, and setting @param nN equal to @param cursor.getNext(),
+ * or in other words, inserting nN a position to the right of this.first.  This properly passes through the argument without changing where the last trainstation
+ * is pointing.  
 
-   public boolean insert(String afterName, String newName){
-   boolean success = false;
-      TrainStation cursor = this.first;
-      TrainStation nN = new TrainStation(newName);
-      if(newName == null || this.contains(newName)){
+ * When successful @param success will @return true.
+ */
+
+  public boolean insert(String afterName, String newName) {
+    //initialize success
+    boolean success = false;
+    //trainstation objects to pass arguments through
+    TrainStation cursor = this.first;
+    TrainStation nN = new TrainStation(newName);
+    //avoids null exception error
+    if (newName == null || this.contains(newName) || afterName == null) {
         success = false;
-      }
-      if(cursor != null && cursor.getName().equals(afterName)){
+        //if the arguments already exist, then just update the position of this.first
+    } else if (cursor != null && cursor.getName().equals(afterName)) {
         nN.setNext(cursor);
-        cursor = nN;
+        this.first = nN; 
         success = true;
-      }
-      while(cursor != null && cursor.getNext() != null){
-        if(afterName != null && cursor.getName().equals(afterName)){
-          nN.setNext(cursor.getNext());
-          cursor.setNext(nN);
-          success = true;
+    } else {
+      //the actual "insert". again, another null protector
+        while (!success && cursor != null && cursor.getNext() != null) {
+          //completes the insert.
+          if (cursor.getNext().getName().equals(afterName)) {
+                nN.setNext(cursor.getNext());
+                cursor.setNext(nN);
+                success = true;
+            }
+            //update positions and number of stations in the trainline
+            cursor = cursor.getNext();
+            this.numberOfstations++;
         }
-        cursor = cursor.getNext();
-        this.numberOfstations++;
-      }
+    } 
     return success;
-   }
+}
+//method insert()
+
   } // class TrainLine
