@@ -246,20 +246,26 @@ return found;
 
 
    public boolean insert(String afterName, String newName){
-    boolean success = false;
-
-    TrainStation cursor = this.first;
-    TrainStation nCursor = this.last;
-
-      
-    while(this.first!=null){
-      if(this.contains(afterName)){
-        this.numberOfstations++;
-        cursor.setNext(nCursor);
+   boolean success = false;
+      TrainStation cursor = this.first;
+      TrainStation nN = new TrainStation(newName);
+      if(newName == null || this.contains(newName)){
+        success = false;
       }
-    }
-    
-    
+      if(cursor != null && cursor.getName().equals(afterName)){
+        nN.setNext(cursor);
+        cursor = nN;
+        success = true;
+      }
+      while(cursor != null && cursor.getNext() != null){
+        if(afterName != null && cursor.getName().equals(afterName)){
+          nN.setNext(cursor.getNext());
+          cursor.setNext(nN);
+          success = true;
+        }
+        cursor = cursor.getNext();
+        this.numberOfstations++;
+      }
     return success;
    }
   } // class TrainLine
