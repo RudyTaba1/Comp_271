@@ -1,4 +1,4 @@
-package WeekSeven;
+package MidTerm;
 import java.util.Arrays;
 
 public class InNOut {
