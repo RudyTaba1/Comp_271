@@ -197,4 +197,62 @@ public boolean hasLoop(){
 
 return found;
    }//method hasLoop()
+
+    /**
+   * Deletes a TrainStation object from the TrainLine.
+   */
+  public void removeStation(String name) {
+    // Empty line guard statement
+    if (this.first != null) {
+      // Check if station to delete is first station
+      if (this.first.getName().equals(name)) {
+        //Move first to its next, even if null. (first=null means empt line)
+        this.first = this.first.getNext();
+        // Did we just delete the only station in the line?
+        if (this.first == null) {
+          this.last = this.first; // last must also be null
+        }
+        // Revise number of stations in the TrainLine
+        this.numberOfstations--;
+      } else {
+        // We are not deleting the first station. Go down the line to find
+        // the station prior to the one we want delete
+        boolean found = false;
+        TrainStation cursor = this.first;
+        while (!found && cursor.hasNext()) {
+          found = cursor.getNext().getName().equals(name);
+          cursor = (found) ? cursor : cursor.getNext();
+        }
+        // Loop stops either because we got to the end of the TrainLine and did
+        // not find the station we want to delete, or because we found it.
+        // Which of the two is the case?
+        if (found) {
+          // We have a station to delete; revise number of stations
+          this.numberOfstations--;
+          // Is it the last station?
+          if (cursor.getNext() == this.last) {
+            // delete last station
+            cursor.setNext(null);
+            // Make station prior to last, the new last station
+            this.last = cursor;
+          } else {
+            // Delete station that is not the last, nor the first
+            cursor.setNext(cursor.getNext().getNext());
+          }
+        }
+      }
+    } // guard if against empty TrainLine 
+  } // method deleteStation
+
+
+   public boolean insert(String afterName, String newName){
+    boolean success = false;
+      
+    while(this.first!=null){
+
+    }
+    
+    
+    return success;
+   }
   } // class TrainLine

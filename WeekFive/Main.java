@@ -4,60 +4,65 @@ import WeekSix.TrainStation;
 
 
 public class Main {
-    public static void main(String[] args){
-        // Realistic line
+
+  private static final String TEST_REPORT = "\n\nMethod .insert() %S some or all the tests.\n\n";
+
+  public static void main(String[] args) {
+    // Realistic line
     TrainLine redLineSB = new TrainLine();
-    redLineSB.addStation("Howard");
-    redLineSB.addStation("Jarvis");
-    redLineSB.addStation("Morse");
-    redLineSB.addStation("Loyola");
-    redLineSB.addStation("Granville");
-    redLineSB.addStation("Thorndale");
-    redLineSB.addStation("Bryn Mawr");
-
-    // Imaginary line
-    TrainLine hogwarts = new TrainLine();
-    // Create a few stations first
-    TrainStation kin = new TrainStation("King's Cross");
-    TrainStation min = new TrainStation("Ministry of Magic");
-    TrainStation wiz = new TrainStation("Wizengamot Way");
-    TrainStation the = new TrainStation("Thestral Terminal");
-    TrainStation hip = new TrainStation("Hippogriff Halt");
-    TrainStation pat = new TrainStation("Patronus Pass");
-    TrainStation fbd = new TrainStation("Forbidden Forest");
-    TrainStation pro = new TrainStation("Professor's Platform");
-    TrainStation hgj = new TrainStation("Hogsmeade Junction");
-    TrainStation hog = new TrainStation("Hogwarts");
-    hogwarts.addStation(kin);
-    hogwarts.addStation(min);
-    hogwarts.addStation(wiz);
-    hogwarts.addStation(the);
-    hogwarts.addStation(hip);
-    hogwarts.addStation(pat);
-    hogwarts.addStation(fbd);
-    hogwarts.addStation(pro);
-    hogwarts.addStation(hgj);
-    hogwarts.addStation(hog);
-    hog.setNext(hip);
-
+    // Station names to add to line
+    String[] stationNames = { "Howard", "Morse",
+        "Loyola", "Thorndale", "Bryn Mawr" };
     // Empty line
-    TrainLine empty = new TrainLine();
-
-    boolean testRedLineSB = redLineSB.hasLoop();
-    boolean testHogwarts = hogwarts.hasLoop();
-    boolean testEmpty = empty.hasLoop();
-
-    boolean testIndexOfMorse = redLineSB.indexOf("Morse") == 2;
-    boolean testIndexOfBM = redLineSB.indexOf("Bryn Mawr") == 6;
-    boolean testIndexOfKimball = redLineSB.indexOf("Kimball") == -1;
-    boolean testIndexOfEmpty = empty.indexOf("Morse") == -1;
-
-    boolean testResult = (!testRedLineSB && testHogwarts && !testEmpty &&
-        testIndexOfMorse && testIndexOfKimball &&
-        testIndexOfEmpty && testIndexOfBM);
-
-    String test = (testResult) ? "successfully" : "unsuccessfully";
-
-    System.out.printf("\n\n\nYour code tests %S.\n\n\n", test);
-    }
+    TrainLine mauveLine = new TrainLine();
+    // Populate line with the stations
+    for (String name : stationNames)
+      redLineSB.addStation(name);
+    // Set up the testing
+    String afterStation, newStation;
+    // First test
+    afterStation = "Howard";
+    newStation = "Jarvis";
+    boolean test1_insert = redLineSB.insert(afterStation, newStation);
+    boolean test1_verify = redLineSB.toString().contains(newStation);
+    // Second test
+    afterStation = "Bryn Mawr";
+    newStation = "Berwyn";
+    boolean test2_insert = redLineSB.insert(afterStation, newStation);
+    boolean test2_verify = redLineSB.toString().contains(newStation);
+    // Third test
+    afterStation = null;
+    newStation = "Morse";
+    boolean test3_before = redLineSB.insert(afterStation, newStation);
+    boolean test3_after = redLineSB.insert(newStation, afterStation);
+    boolean test3_both = redLineSB.insert(null, null);
+    // Fourth test
+    afterStation = "Jarvis";
+    newStation = "Jarvis";
+    boolean test4 = redLineSB.insert(afterStation, newStation);
+    // First test
+    afterStation = "Hogsmeade";
+    newStation = "Hogwarts";
+    boolean test5 = mauveLine.insert(afterStation, newStation);
+    // Test summary
+    boolean test = ((test1_insert && test1_verify) &&
+        (test2_insert && test2_verify) &&
+        !test3_before && !test3_after && !test3_both &&
+        !test4 &&
+        !test5);
+    // Report test results
+    String outcome = (test) ? "passed" : "failed";
+    System.out.printf(TEST_REPORT, outcome);
+    // Case-by-case reporting
+    outcome = (test1_insert && test1_verify) ? "passed" : "failed";
+    System.out.printf("%s\tTest 1 (insertion after first)\n", outcome);
+    outcome = (test2_insert && test2_verify) ? "passed" : "failed";
+    System.out.printf("%s\tTest 2 (insertion after last)\n", outcome);
+    outcome = (!test3_before && !test3_after && !test3_both) ? "passed" : "failed";
+    System.out.printf("%s\tTest 3 (null argument)\n", outcome);
+    outcome = (!test4) ? "passed" : "failed";
+    System.out.printf("%s\tTest 4 (duplicate station)\n", outcome);
+    outcome = (!test5) ? "passed" : "failed";
+    System.out.printf("%s\tTest 5 (empty TrainLine)\n\n", outcome);
+  }
 }
