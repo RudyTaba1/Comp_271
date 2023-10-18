@@ -63,6 +63,17 @@ public class InNOut {
         return ret;
 
     }
+    public String pop(){
+        return "nuh-uh";
+    }
+
+    public String peek(String[] array){
+        return "first";
+    }
+
+    public boolean append(String string){
+        return false;
+    }
     }
 
     
