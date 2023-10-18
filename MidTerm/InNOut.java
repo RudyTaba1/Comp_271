@@ -67,8 +67,8 @@ public class InNOut {
         return "nuh-uh";
     }
 
-    public String peek(String[] array){
-        return "first";
+    public String peek(){
+        return this.data[0];
     }
 
     public boolean append(String string){
