@@ -88,14 +88,12 @@ public class InNOut {
      * wether the position is a good position 
      */
     public void compact(int pos, String ins){
-        
             //another double check to make sure position is good 
             if(pos >= 0 && pos < this.size){
                 //insert position x at position x-1. Insert wherever you want into the array.
                 //once inserted, the for loop will recompact the array in order to keep everything together
                 for(int x = this.size; x > pos; x--){
                        this.data[x] = this.data[x-1];
-                       
                 }
                 //when done shifting update parameters.
                 this.data[pos] = ins;
@@ -109,33 +107,53 @@ public class InNOut {
                 this.size,
                 itemOrItems);
           }
-
-          public String pop() {
+/**
+ * Remove and return an item from the beginning of the underlying array. Remaining items are shifted to the front of the array, 
+ * and emptying places at the back of the array are filled with nulls.
+ * @return the first element in the array if it exists or null if there are no items to remove. 
+ */
+    public String pop() {
             String removedItem = null;
+            //checks to see if the array is empty
             if(this.size > 0) {
+                //removes the first item in the array
                 removedItem = this.data[0];
+                //shifts the array to the left
                 for (int i = 1; i < this.size; i++) {
                     this.data[i - 1] = this.data[i];
                 }
+                //sets the last item in the array to null
                 this.data[this.size - 1] = null;
+                //update size
                 this.size--;
             }
             return removedItem;
         }
         
-
+/**
+ * Take a look at the value of the item in the front of the array, without removing it. If they array is empty, return null.
+ * @return the string at beginning of array or null if the array is empty.
+ */
     public String peek(){
+        //assumes method is empty unless proven otherwise.
         String beg_of_array = null;
+        //uses helper isEmpty method
         if(!this.isEmpty()){
             beg_of_array = this.data[0];
         }
         return beg_of_array;
     }
+    //peek() method
 
     
-
+/**
+ * Add a string after the last (most recently added) item in the array. 
+ * @param string is the string to be appended to the end of the array
+ * @return true if there is room and add an element. If the array is full, return false.
+ */
     public boolean append(String string) {
         boolean success = false;
+        //verifies whether the array is full
         if(this.size < this.data.length){
             this.data[this.size] = string;
             this.size++;
@@ -143,6 +161,7 @@ public class InNOut {
         }
         return success;
     }
+    //append() method
     
     }
 
