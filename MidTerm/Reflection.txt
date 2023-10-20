@@ -1,0 +1,27 @@
+Professor (or whoever is grading this),
+
+Before I begin, I appreciate being able to do this reflection and discuss my performance thus far into this semester.
+Looking into my feedback log, I notice a common reoccurance of error in optimization and clean code. This is something that I intend
+to continue working on improving, and have done over the last assignments.  In regards to time given to assignments, as seen by the missed submission of homework three,
+there are moments where I do not give myself enough time to get work done, and I definitely find myself behind and lost.  That being said, I've been good about limiting those kinds of 
+situations.  I've dedicated more time to school work at school and as a result, haven't missed any assignments since.As for class attendance, it hasn't been superb,
+but ever since the zoom option has opened up, I've made sure to join the zoom so I do not miss class. I'm a commuter, and so
+with travel times, ocassionally waking up late, etc. having that zoom option helps immensly.
+
+One question I really like on here is the comparison code question. Whenever I am doing the peer reviews, I find a lot of the same 
+code written, or at least of the same style.  That being said, there are ocassions where I'm absolutely blown away by the javadocs or
+some of the optimization stuff that happens in students code (especially in the DynamicArrays assignment). On one of the assignments, 
+I think one of the trainline ones, the level of detail on the javadoc was amazing. They explained how the method work and terminology within
+that method. Compared to mine, it was gold.  In a lot of ways, I find myself learning from the peer reviews and it's very visible when someone
+spends time building their methods and code.  Overall, I think I'm an average coder, and would probably rank myself as such.
+
+Conceptually, I'm a lot more understanding with DynamicArrays than I am trainline.  Though I understand that trainline just functions as a pointer,
+it is a lot easier to physically see that in DynamicArrays than it is trainline, and the this.first and this.last really through me off when we were
+initially learning it in class.  It's a lot better now, but I'm definitely better with DynamicArrays than I am trainline.
+
+Overall, if I were to rate myself grade wise, I'd give myself a B.  I think I can definitely improve on time management and class-promptness, but I believe
+that I have a relatively firm grasp on the topics that were taught throughout this first-half of the semester and I've grown a lot since assignment 1.
+I'll try to have more questions for after class to see if I can better my understanding of topics for this ladder-half of the semester to continue 
+the improvement, and finish strong.
+
+Again, thank you for this opprotunity, and I'll see you in class.
