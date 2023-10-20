@@ -245,7 +245,7 @@ return found;
   } // method deleteStation
 
 /**
- * the insert method passes through two string objects @param afterName and @param newName, in order to 
+ * the insert() method passes through two string objects @param afterName and @param newName, in order to 
  * to update and add a trainstation to the trainline, while also returning a boolean value @param success, letting the user
  * know whether the insert and update operation was done successfully.  If the existing parameters are already in the trainline,
  * then @param success will be set to false, as these parameters already exist in the trainline.
