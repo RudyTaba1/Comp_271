@@ -58,6 +58,12 @@ public class InNOut {
   public boolean isFull() {
     return this.size == this.data.length;
   } // method isFull
+
+    public String toString() {
+        String itemOrItems = (this.size == 1) ? SINGULAR_ITEM : PLURAL_ITEMS;
+            return String.format("Array %s has %d %s stored",
+                Arrays.toString(this.data), this.size, itemOrItems);
+          }
     /**
    * Add a string to the underlynig array, but place it always at the
    * first position in the array, moving any existing elements as needed
@@ -82,31 +88,7 @@ public class InNOut {
     return success;
   } // method push
 
-    /**
-     * the compact method passes through @param pos (the last position in the array) and string @param ins (string that we're starting at)
-     * and reorganizes the array such that all the empty spaces in the array moves all the way to the right. The method starts by varifying
-     * wether the position is a good position 
-     */
-    public void compact(int pos, String ins){
-            //another double check to make sure position is good 
-            if(pos >= 0 && pos < this.size){
-                //insert position x at position x-1. Insert wherever you want into the array.
-                //once inserted, the for loop will recompact the array in order to keep everything together
-                for(int x = this.size; x > pos; x--){
-                       this.data[x] = this.data[x-1];
-                }
-                //when done shifting update parameters.
-                this.data[pos] = ins;
-                this.size++;
-            }
-        }
-    public String toString() {
-            String itemOrItems = (this.size == 1) ? SINGULAR_ITEM : PLURAL_ITEMS;
-            return String.format("Array %s has %d %s stored",
-                Arrays.toString(this.data),
-                this.size,
-                itemOrItems);
-          }
+
 /**
  * Remove and return an item from the beginning of the underlying array. Remaining items are shifted to the front of the array, 
  * and emptying places at the back of the array are filled with nulls.
