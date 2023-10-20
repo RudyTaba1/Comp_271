@@ -112,7 +112,7 @@ public class InNOut {
 
           public String pop() {
             String removedItem = null;
-            if(this.size != 0) {
+            if(this.size > 0) {
                 removedItem = this.data[0];
                 for (int i = 1; i < this.size; i++) {
                     this.data[i - 1] = this.data[i];
