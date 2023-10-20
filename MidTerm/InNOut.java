@@ -137,7 +137,7 @@ public class InNOut {
     public boolean append(String string) {
         boolean success = false;
         //verifies whether the array is full
-        if(this.size < this.data.length){
+        if(!isFull()){
             this.data[this.size] = string;
             this.size++;
             success = true;
