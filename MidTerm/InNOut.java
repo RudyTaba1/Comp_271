@@ -97,7 +97,7 @@ public class InNOut {
     public String pop() {
             String removedItem = null;
             //checks to see if the array is empty
-            if(this.size > 0) {
+            if(!this.isEmpty()) {
                 //removes the first item in the array
                 removedItem = this.data[0];
                 //shifts the array to the left
