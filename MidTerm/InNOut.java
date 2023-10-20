@@ -111,6 +111,7 @@ public class InNOut {
             }
             return removedItem;
         }
+        //pop() method
         
 /**
  * Take a look at the value of the item in the front of the array, without removing it. If they array is empty, return null.
