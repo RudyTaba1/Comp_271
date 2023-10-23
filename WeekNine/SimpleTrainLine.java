@@ -107,7 +107,7 @@ public class SimpleTrainLine {
   } // method toString
 
   public String reverseRecursively(String[] array){
-    return "";
+    return "nuh-uh";
   }
 
 } // class TrainLine
