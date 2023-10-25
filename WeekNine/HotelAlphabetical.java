@@ -1,4 +1,5 @@
 package WeekNine;
+import WeekNine.Hammock;
 
 public class HotelAlphabetical {
     private static final char FIRST_LETTER_UPPER = 'A';
@@ -6,12 +7,15 @@ public class HotelAlphabetical {
     private static final char LAST_LETTER_UPPER = 'Z';
     private static final char LAST_LETTER_LOWER = 'z';
     class Hammock{
+    private Hammock next;
    private String guestFirstName;
    private String guestLastName;
       private Hammock(String guestFirstName, String guestLastName) {
       this.guestFirstName = guestFirstName;
       this.guestLastName = guestLastName;
+      this.next = null;
    }
+
    /**
     * gets the guest's first name
     * @return first name
@@ -19,6 +23,7 @@ public class HotelAlphabetical {
    public String getGuestFirstName() {
       return this.guestFirstName;
    }
+
    /**
     * gets the guest's last name
     * @return last name
@@ -26,11 +31,36 @@ public class HotelAlphabetical {
     public String getGuestLastName() {
         return this.guestLastName;
     }
+
     /**
      * toString call
      */
    public String toString() {
       return this.guestFirstName + " " + this.guestLastName;
+   }
+
+   /**
+    * sets the next hammock
+    * @param next the next hammock
+    */  
+   public boolean hasNext(){
+        return this.next != null;
+   }
+
+   /**
+    * gets the next hammock
+    * @return the next hammock
+    */
+   public Hammock getNext(){
+        return this.next;
+   }
+   
+   /**
+    * sets the next hammock
+    * @param next the next hammock
+    */
+   public void setNext(Hammock next){
+        this.next = next;
    }
    //underlying array for the hotel
    Hammock[] rooms = new Hammock[26];
@@ -59,5 +89,6 @@ public class HotelAlphabetical {
             
         }
     }
+
 }
 }
