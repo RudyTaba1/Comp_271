@@ -106,8 +106,35 @@ public class SimpleTrainLine {
     return sb.toString();
   } // method toString
 
-  public String reverseRecursively(String[] array){
-    return "nuh-uh";
+  /**
+   * Accessor for reverseIteratively() method.
+   * @return reversed array when called.
+   */
+  public String reverseRecursively() {
+    return reverseIteratively(this.first);
+}
+
+
+/**
+ * Helper method to reverse the line recursively.
+ * @param current is a TrainStation object that defaults to this.first (the first station in the line), and will then be stored to @param reversed.
+ * Assuming the string is not empty, the method will push the remaining lines through another string, @param linesRemaining, 
+ * by calling the method again with the next station in the line as the parameter and then add it to the reversed string.
+ * @return will return the reversed array.
+ */
+private String reverseIteratively(TrainStation current) {
+  String reversed = "";
+  // assuming the this.first is not empty
+  if (current != null) {
+      String lineRemaining = reverseIteratively(current.getNext());
+    // if the next station is not null, then store to reversed
+      if (!lineRemaining.isEmpty()) {
+          reversed = lineRemaining + ", ";
+      }
+  // this will add the first station to the last element of the reversed string.
+      reversed += current.getName();
   }
+  return reversed;
+}// method reverseIteratively()
 
 } // class TrainLine
