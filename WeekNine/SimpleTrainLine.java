@@ -117,7 +117,7 @@ public class SimpleTrainLine {
 
 /**
  * Helper method to reverse the line recursively.
- * @param current is a TrainStation object that defaults to this.first (the first station in the line), and will then be stored to @param reversed.
+ * @param current is a TrainStation object that defaults to this.first (the first station in the line), and will then be stored to @param reversed last.
  * Assuming the string is not empty, the method will push the remaining lines through another string, @param linesRemaining, 
  * by calling the method again with the next station in the line as the parameter and then add it to the reversed string.
  * @return will return the reversed array.
@@ -128,7 +128,7 @@ private String reverseIteratively(TrainStation current) {
   if (current != null) {
       String lineRemaining = reverseIteratively(current.getNext());
     // if the next station is not null, then store to reversed
-      if (!lineRemaining.isEmpty()) {
+      if (lineRemaining != null && lineRemaining.length() > 0) {
           reversed = lineRemaining + ", ";
       }
   // this will add the first station to the last element of the reversed string.

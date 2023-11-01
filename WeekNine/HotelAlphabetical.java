@@ -81,14 +81,28 @@ public class HotelAlphabetical {
      * adds a guest to the hotel
      * @param guest the guest to add
      */
-    public void addGuest(String firsName, String lastName){
-        //first letter of last name
-        char firstOfLast = lastName.charAt(0);
-        while(startsWithLetter(lastName)&&isLetter(firstOfLast)){
-            //add a guest
-            
-        }
+   public void addGuest(String firstName, String lastName) {
+    // Guard againsts invalid last name
+    if (startsWithLetter(lastName)) {
+      // Get first letter of last name in upper case
+      char firstLetter = lastName.toUpperCase().charAt(0);
+      // Convert first letter into an int beween 0 and 26 to find the
+      // array position for this guest's hammock.
+      int number = (int) firstLetter - (int) 'A';
+      // Hammock for the new guest
+      Hammock newGuest = new Hammock(firstName, lastName);
+      // Let's check the room where guest should go. Anyone already there?
+      if (rooms[number] == null) {
+        // Room empty, first hammock in room is for new guest.
+        rooms[number] = newGuest;
+      } else {
+        // Room not empty. Guest removes existing hammocks, adds theirs,
+        // and attaches other hammocks to their hammock.
+        newGuest.setNext(rooms[number]); // new guest at top of existing hammocks
+        rooms[number] = newGuest; // new guest first in room
+      }
     }
+  }
 
 }
 }

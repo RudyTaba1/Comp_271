@@ -81,8 +81,11 @@ package WeekNine;
             Hammock newGuest = new Hammock(firsName, lastName);
             //java auto-converts char to int via acsii. kinda cool.
             int roomIndex = (int) roomLabel - (int) FIRST_LETTER_UPPER;
-            
+            //place in room
+            if(rooms[roomIndex] == null){
+            rooms[roomIndex] = newGuest;
         }
+      }
     }
 }
 
