@@ -1,87 +1,54 @@
 package WeekNine;
 import WeekNine.Hammock;
 
+/**
+ * A rather spooky hotel, where guests are sent to one of its 26 rooms, and
+ * stay on a hammock; if there are multiple guests assigned to a room, the
+ * most recent guest get the top hammock and the remaining guests' hammocks
+ * are appended below the first guest's hammoc.
+ */
 public class HotelAlphabetical {
-    private static final char FIRST_LETTER_UPPER = 'A';
-    private static final char FIRST_LETTER_LOWER = 'a';
-    private static final char LAST_LETTER_UPPER = 'Z';
-    private static final char LAST_LETTER_LOWER = 'z';
-    class Hammock{
-    private Hammock next;
-   private String guestFirstName;
-   private String guestLastName;
-      private Hammock(String guestFirstName, String guestLastName) {
-      this.guestFirstName = guestFirstName;
-      this.guestLastName = guestLastName;
-      this.next = null;
-   }
 
-   /**
-    * gets the guest's first name
-    * @return first name
-    */
-   public String getGuestFirstName() {
-      return this.guestFirstName;
-   }
+  /** Constant with number of letters in alphabet */
+  private static final int NUMBER_OF_LETTERS = 26;
 
-   /**
-    * gets the guest's last name
-    * @return last name
-    */
-    public String getGuestLastName() {
-        return this.guestLastName;
-    }
+  /** Array of chainable hammocks. One hammock chain per room */
+  Hammock[] rooms = new Hammock[NUMBER_OF_LETTERS];
 
-    /**
-     * toString call
-     */
-   public String toString() {
-      return this.guestFirstName + " " + this.guestLastName;
-   }
+  /**
+   * Determine if a char is an actual letter.
+   * (Yes, we can do this with a regex but where's the fun in that?)
+   * 
+   * @param character char to determine if it's an actual letter
+   * @return true if character is Aa-Zz, false otherwise.
+   */
+  static public boolean isLetter(char character) {
+    return ((character >= 'A' && character <= 'Z') ||
+        (character >= 'a' && character <= 'z'));
+  } // isLetter
 
-   /**
-    * sets the next hammock
-    * @param next the next hammock
-    */  
-   public boolean hasNext(){
-        return this.next != null;
-   }
+  /**
+   * Determine if a string starts with an true alphabetical character.
+   * 
+   * @param string String we test to see if first char is letter.
+   * @return true if first character is letter, false otherwise
+   *         or when string is null or empty.
+   */
+  static public boolean startsWithLetter(String string) {
+    return (string != null && // guard against null entry
+        string.length() > 0 && // guard against empty string
+        isLetter(string.charAt(0)) // check string's first char
+    );
+  } // method startsWithLetter
 
-   /**
-    * gets the next hammock
-    * @return the next hammock
-    */
-   public Hammock getNext(){
-        return this.next;
-   }
-   
-   /**
-    * sets the next hammock
-    * @param next the next hammock
-    */
-   public void setNext(Hammock next){
-        this.next = next;
-   }
-   //underlying array for the hotel
-   Hammock[] rooms = new Hammock[26];
-
-   /**
-    * verifies whether or not input of string is valid (a word)
-    * @param c is <string>.charAt(0)
-    * @return word or not word
-    */
-   public boolean isLetter(char c){
-         return (c >= FIRST_LETTER_UPPER && c <= LAST_LETTER_UPPER) || (c >= FIRST_LETTER_LOWER && c <= LAST_LETTER_LOWER);
-   }
-   public boolean startsWithLetter(String string){
-         return string != null && isLetter(string.charAt(0));
-   }
-   
-   /**
-     * adds a guest to the hotel
-     * @param guest the guest to add
-     */
-   public void addGuest(String firstName, String lastName) {
+  /**
+   * Add a guest to the hotel by finding the corresponding room label
+   * and sending them to that room with their hammock.
+   *
+   * @param firstName string with guest's first name
+   * @param lastName  string with guest's last name
+   */
+  public void addGuest(String firstName, String lastName) {
     // Guard againsts invalid last name
     if (startsWithLetter(lastName)) {
       // Get first letter of last name in upper case
@@ -102,7 +69,32 @@ public class HotelAlphabetical {
         rooms[number] = newGuest; // new guest first in room
       }
     }
-  }
+  } // method addGuest
 
-}
+  /**
+   * String representation
+   *
+   * @return String representation of object
+   */
+  public String toString() {
+    // Using StringBuilder for demo
+    StringBuilder sb = new StringBuilder();
+    sb.append("Showing only rooms with guests -- empty rooms ommitted.");
+    for (int i = 0; i < this.rooms.length; i++) {
+      // Check if room not empty
+      if (this.rooms[i] != null) {
+        // Create room label
+        char roomLabel = (char) ((int) 'A' + i);
+        sb.append(String.format("\n[ %s ]: | ", roomLabel));
+        Hammock guestHammock = this.rooms[i];
+        while (guestHammock != null) {
+          sb.append(String.format("%s, %s. | ",
+              guestHammock.getGuestFirstName(),
+              guestHammock.getGuestLastName().charAt(0)));
+          guestHammock = guestHammock.getNext();
+        }
+      }
+    }
+    return sb.toString();
+  }
 }
