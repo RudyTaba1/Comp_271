@@ -97,4 +97,41 @@ public class HotelAlphabetical {
     }
     return sb.toString();
   }
+  /**
+   * another .toString() call that prints occupied rooms, 
+   * amount of guests in each room, and the longest last name in the hotel
+   */
+
+   /*  public String toString() {
+    String result = "";
+    int fullRooms = 0;
+    int EmptyRooms = 0;
+    int longest = 0;
+    // Loop through rooms
+    for(int i = 0; i < NUMBER_OF_ROOMS; i++) {
+      // Guard against null room
+      if (rooms[i] != null) {
+        fullRooms++;
+        EmptyRooms = (NUMBER_OF_ROOMS - fullRooms);
+      }
+      Hammock currentHammock = this.rooms[i];
+      //find the longest last name
+      while(currentHammock != null){
+        //if the length of the last name is greater than the longest, replace it
+        if(currentHammock.getLastName().length() > longest){
+          longest = currentHammock.getLastName().length();
+        }
+        //cycle through it
+          currentHammock = currentHammock.getNext();
+      }
+      //add results
+      result = "There are " + EmptyRooms + " guests at the hotel, occupying " + fullRooms + " rooms.\n";
+      result += EmptyRooms + " rooms are empty.\n";
+      result += "The longest last name is " + longest + " characters long.\n";
+    }
+    return result;
+  }
+ * 
+ */
 }
+
