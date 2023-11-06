@@ -9,7 +9,30 @@ import WeekNine.Hammock;
  */
 public class HotelAlphabetical {
 
-  /** Constant with number of letters in alphabet */
+/** Constant with number of letters in alphabet */
+  private static final int DEFAULT_NUMBER_OF_ROOMS = 4;
+
+  /** Constant with SPACE */
+  private static final String SPACE = " ";
+
+  /** Array of chainable hammocks. One hammock chain per room */
+  Hammock[] room;
+
+  /** Length of longest last name - for nice printing */
+  private int longestLastName; 
+
+  /** How many guests are in the hotel */
+  private int guests; 
+
+  /** How many rooms are occupied? */
+  private int occupiedRooms; 
+
+  /** load factor of hotel rooms = rooms occupied/total rooms */
+  private double loadFactor; // DEVELOPED IN CLASS 11/3
+  /** Threshold to resize and rehash the hotel */
+  private static final double LOAD_FACTOR_THRESHOLD = 0.75;  // DEVELOPED IN CLASS 11/3
+  /** Resize factor for the when it's time to increase hotel capacity */
+  private static final int RESIZE_FACTOR = 2;  // DEVELOPED IN CLASS 11/3  /** Constant with number of letters in alphabet */
   private static final int NUMBER_OF_LETTERS = 26;
 
   /** Array of chainable hammocks. One hammock chain per room */
@@ -41,6 +64,12 @@ public class HotelAlphabetical {
     );
   } // method startsWithLetter
 
+    private int assignRoom(String lastName) {
+    // return ((int) lastName.toUpperCase().charAt(0) - (int) 'A') % this.rooms.length;
+    // return lastName.length() % this.rooms.length;
+    return Math.abs(lastName.hashCode()) % this.rooms.length;  // DEVELOPED IN CLASS 11/3
+  }
+  
   /**
    * Add a guest to the hotel by finding the corresponding room label
    * and sending them to that room with their hammock.
@@ -48,25 +77,39 @@ public class HotelAlphabetical {
    * @param firstName string with guest's first name
    * @param lastName  string with guest's last name
    */
+
   public void addGuest(String firstName, String lastName) {
     // Guard againsts invalid last name
     if (startsWithLetter(lastName)) {
-      // Get first letter of last name in upper case
-      char firstLetter = lastName.toUpperCase().charAt(0);
       // Convert first letter into an int beween 0 and 26 to find the
       // array position for this guest's hammock.
-      int number = (int) firstLetter - (int) 'A';
+      int number = assignRoom(lastName);
       // Hammock for the new guest
       Hammock newGuest = new Hammock(firstName, lastName);
       // Let's check the room where guest should go. Anyone already there?
       if (rooms[number] == null) {
         // Room empty, first hammock in room is for new guest.
         rooms[number] = newGuest;
+        // One more room is now occupied
+        this.occupiedRooms++; 
+        // Since one more room is now used, update load factor
+        // DEVELOPED IN CLASS 11/3
+        this.loadFactor = (double) this.occupiedRooms / (double) this.rooms.length;
       } else {
         // Room not empty. Guest removes existing hammocks, adds theirs,
         // and attaches other hammocks to their hammock.
-        newGuest.setNext(rooms[number]); // new guest at top of existing hammocks
-        rooms[number] = newGuest; // new guest first in room
+        newGuest.setNext(rooms[number]);
+        rooms[number] = newGuest;
+      }
+      // Update longest name length
+      if (lastName.length() > this.longestLastName) { 
+        this.longestLastName = lastName.length(); 
+      }
+      // Update number of occupants
+      this.guests++; 
+      // Before leaving, let's see if it's time to resize and rehash
+      if (this.loadFactor > LOAD_FACTOR_THRESHOLD) { // DEVELOPED IN CLASS 11/3
+        this.rehash();  // DEVELOPED IN CLASS 11/3
       }
     }
   } // method addGuest
@@ -97,6 +140,32 @@ public class HotelAlphabetical {
     }
     return sb.toString();
   }
+
+  /**
+   * Resize and rehash the hotel
+   */
+  public void rehash() { // DEVELOPED IN CLASS 11/3
+    // Create a temporary copy of the hotel's occupants
+    Hammock[] temp = this.rooms;
+    // Increase the size of the rooms array -- its existing data will be lost
+    // but we have a copy in array temp
+    this.rooms = new Hammock[RESIZE_FACTOR*this.rooms.length];
+    // Now we have a new hotel, reset its characteristics. No need to reset
+    // longest last name, since we are using the same data.
+    this.guests = 0;
+    this.occupiedRooms = 0;
+    this.loadFactor = 0.0;
+    // Go through every guest in array temp and rehash them to the new array.
+    for (int i = 0; i < temp.length; i++) {
+      Hammock cursor = temp[i];
+      while (cursor != null) {
+        this.addGuest(cursor.getGuestFirstName(), cursor.getGuestLastName());
+        cursor = cursor.getNext();
+      }
+    }
+  } // method rehash
+
+
   /**
    * another .toString() call that prints occupied rooms, 
    * amount of guests in each room, and the longest last name in the hotel
