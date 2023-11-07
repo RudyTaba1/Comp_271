@@ -1,19 +1,27 @@
 package WeekEleven;
 
 public class HashTable {
-     /** Default resize factor for enlarging underlying array */
+/** Default resize factor for enlarging underlying array */
   private static final int DEFAULT_RESIZE_FACTOR = 2;
 
-  /** Underlying array of linked lists */
+  /**
+   * Underlying array of linked lists. The "first" node of each linked
+   * list is added as an element to the array. New nodes to that linked
+   * list are placed as elements to the same position in the array, with
+   * the existign chain of nodes attached behind them.
+   */
   private Node[] table;
-
-  /** Size of underlying table */
-  private int size;
 
   /** Default size for underlying array */
   private static final int SIZE = 4;
 
-  /** How many elements of the underlying array are used */
+  /**
+   * How many elements of the underlying array are used. This is not the
+   * total number of nodes present in the underlying array. Stricly the
+   * number of elements used in the array. For example, an array may have
+   * 4 elements, and only one of them used. That single element may contain
+   * a linked list with multiple nodes.
+   */
   private int elementsUsed;
 
   /** Utilization rate = elements used / length of underlyin array */
@@ -29,7 +37,7 @@ public class HashTable {
   private int[] lengths;
 
   /** What is the longest linked list's length */
-  private int longestLL;
+  private int longestList;
 
   /** Basic constructor */
   public HashTable(int size, double loadFactorThreshold) {
@@ -38,7 +46,7 @@ public class HashTable {
     this.elementsUsed = 0;
     this.loadFactor = 0.0;
     this.lengths = new int[size];
-    this.longestLL = 0;
+    this.longestList = 0;
   }
 
   /** Default constructor */
@@ -46,34 +54,46 @@ public class HashTable {
     this(SIZE, LOAD_FACTOR_THRESHOLD);
   }
 
-  /** Add a string value to the hash table */
+  /**
+   * Add a string value to the hash table. Method accepts a non-empty string,
+   * determines which position in the underlying array to place it, and adds
+   * it accordingly. Position determination is modulo-based. Placement is done
+   * by creating a node with the string and making the node the first node in
+   * a link list. That first node is then placed in the determined position of
+   * the underlying array.
+   *
+   */
   public void add(String value) {
     // Exclude null and empty strings
     if (value != null && value.length() > 0) {
       // Create node object with string value in it
       Node newNode = new Node(value);
-      // Which position of the array will this node go to?
+      // Which position of the array will this node go to? We delegate
+      // the decision to method hashFunction.
       int position = this.hashFunction(value);
-      // Is the position is empty or not?
+      // Is the specified position in the underlying array empty or not?
       if (this.table[position] == null) {
         // No other node in position. Just place new node here
         this.table[position] = newNode;
-        // One more element used
+        // We are not using one more element in the underlying array. Time
+        // to update the count of such elements, and the load factor.
         this.elementsUsed++;
         this.loadFactor = (double) this.elementsUsed / (double) this.table.length;
       } else {
         // Position occupied. Chain existing nodes behind new one
         newNode.setNext(this.table[position]);
+        // Place new node (that now has the previous occupants of [position]
+        // attached after it) to [position]
         this.table[position] = newNode;
       }
-      // Update the length of linked list we just used above
+      // Update the length of linked list we just used
       this.lengths[position]++;
-      // Find longest length and its place in the array
+      // Find longest length and its place in the array.
       int longestPosition = 0;
-      this.longestLL = this.lengths[longestPosition];
+      this.longestList = this.lengths[longestPosition];
       for (int i = 1; i < this.lengths.length; i++) {
-        if (this.lengths[i] > this.longestLL) {
-          this.longestLL = this.lengths[i];
+        if (this.lengths[i] > this.longestList) {
+          this.longestList = this.lengths[i];
           longestPosition = i;
         }
       }
@@ -84,6 +104,12 @@ public class HashTable {
     }
   } // method add
 
+  /**
+   * Increases the size of the underlying array and adds all the nodes
+   * back to it. This results to an object with lower load factor than
+   * before. It also yields a data structure with shorter linked lists
+   * in it.
+   */
   public void rehash() {
     // Backup existing table
     Node[] temp = this.table;
@@ -132,5 +158,5 @@ public class HashTable {
       }
     }
     return sb.toString();
-  } // method toStrin
+  } // method toString
 }
