@@ -1,5 +1,5 @@
 package WeekNine;
-
+import java.lang.Math;
 public class BackwardsWord {
     /**
      * Write a method that takes a string and returns a string with every other word backwards.
@@ -26,8 +26,18 @@ public class BackwardsWord {
         return reverb;
     }
 
+    public static boolean isRight(int a, int b, int c){
+        boolean right = false;
+        c = Math.max(a, Math.max(b,c));
+        double pytho = Math.pow(a, 2) + Math.pow(b, 2);
+        if(pytho == Math.pow(c, 2) && a+b>c){
+            right = true;
+        }
+        return right;
+    }
+
     public static void main (String[] args){
-        System.out.print(everyOtherWordBackwards("Boy these loops are tricky!"));
-    
+        
+        System.out.println(isRight(3,4,5));
     }
 }
