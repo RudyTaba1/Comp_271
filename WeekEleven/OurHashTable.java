@@ -1,7 +1,8 @@
 package WeekEleven;
 
-public class HashTable {
-/** Default resize factor for enlarging underlying array */
+public class OurHashTable {
+
+  /** Default resize factor for enlarging underlying array */
   private static final int DEFAULT_RESIZE_FACTOR = 2;
 
   /**
@@ -10,7 +11,7 @@ public class HashTable {
    * list are placed as elements to the same position in the array, with
    * the existign chain of nodes attached behind them.
    */
-  private Node[] table;
+  private NewNode[] table;
 
   /** Default size for underlying array */
   private static final int SIZE = 4;
@@ -40,8 +41,8 @@ public class HashTable {
   private int longestList;
 
   /** Basic constructor */
-  public HashTable(int size, double loadFactorThreshold) {
-    this.table = new Node[size];
+  public OurHashTable(int size, double loadFactorThreshold) {
+    this.table = new NewNode[size];
     this.loadFactorThreshold = loadFactorThreshold;
     this.elementsUsed = 0;
     this.loadFactor = 0.0;
@@ -50,7 +51,7 @@ public class HashTable {
   }
 
   /** Default constructor */
-  public HashTable() {
+  public OurHashTable() {
     this(SIZE, LOAD_FACTOR_THRESHOLD);
   }
 
@@ -67,7 +68,7 @@ public class HashTable {
     // Exclude null and empty strings
     if (value != null && value.length() > 0) {
       // Create node object with string value in it
-      Node newNode = new Node(value);
+      NewNode newNode = new NewNode(value);
       // Which position of the array will this node go to? We delegate
       // the decision to method hashFunction.
       int position = this.hashFunction(value);
@@ -112,17 +113,17 @@ public class HashTable {
    */
   public void rehash() {
     // Backup existing table
-    Node[] temp = this.table;
+    NewNode[] temp = this.table;
     // Resize table -- data will be lost -- ok, we have backup
-    this.table = new Node[DEFAULT_RESIZE_FACTOR * this.table.length];
+    this.table = new NewNode[DEFAULT_RESIZE_FACTOR * this.table.length];
     // Resize array with length counters
     this.lengths = new int[this.table.length];
     // Reset quantities
     this.loadFactor = 0.0;
     this.elementsUsed = 0;
     // Iterate backup and move data to new table
-    for (Node node : temp) {
-      Node cursor = node;
+    for (NewNode node : temp) {
+      NewNode cursor = node;
       while (cursor != null) {
         this.add(cursor.getValue());
         cursor = cursor.getNext();
@@ -145,10 +146,10 @@ public class HashTable {
         this.elementsUsed,
         this.table.length,
         this.loadFactor));
-    for (Node node : table) {
+    for (NewNode node : table) {
       if (node != null) {
         sb.append(String.format("\n[%S]", node.getValue()));
-        Node cursor = node.getNext();
+        NewNode cursor = node.getNext();
         while (cursor != null) {
           sb.append(String.format(" --> [%s]", cursor.getValue()));
           cursor = cursor.getNext();
