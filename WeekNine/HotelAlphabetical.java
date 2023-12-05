@@ -202,5 +202,21 @@ public class HotelAlphabetical {
   }
  * 
  */
+
+ /**
+  * proper tostring method without making it do math and such
+  */
+  /**
+   *   public String tooString() { // ADDED FOR HOMEWORK 8 SOLUTION
+    return String.format("There are %d guest at the hotel, occuping %d rooms." +
+        "\n%d rooms are currently empty" +
+        "\n\nThe longest last name we have is %d characters long.",
+        this.guests,
+        this.occupiedRooms,
+        this.rooms.length - this.occupiedRooms,
+        this.longestLastName);
+  }
+
+   */
 }
 
