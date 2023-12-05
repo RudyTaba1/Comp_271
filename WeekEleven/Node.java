@@ -1,39 +1,29 @@
 package WeekEleven;
 
-public class Node {
+class Node {
 
-  /** Data stored in the node; could be anything, here just a string */
-  public String value;
+  /** Constant for toString method */
+  private static final String EMPTY = "(empty)";
 
-  /** Next node in the linked list */
-  public Node next;
-
-  // THE USUAL SUSPECTS ....
+  public String word;
+  public Node left;
+  public Node right;
 
   /** Basic constructor */
-  public Node(String value) {
-    this.value = value;
-    this.next = null;
+  public Node(String word) {
+    this.word = word;
+    this.left = null;
+    this.right = null;
   }
 
-  /** Setter for next */
-  public void setNext(Node next) {
-    this.next = next;
+  /**
+   * String representation
+   */
+  public String toString() {
+    String leftWord = (this.left != null) ? this.left.word : EMPTY;
+    String rightWord = (this.right != null) ? this.right.word : EMPTY;
+    return String.format(" word: %s\n left: %s\nright: %s",
+        this.word, leftWord, rightWord);
   }
 
-  /** Getter for next */
-  public Node getNext() {
-    return this.next;
-  }
-
-  /** Boolean for next */
-  public boolean hasNext() {
-    return this.next != null;
-  }
-
-  /** Getter for value */
-  public String getValue() {
-    return this.value;
-  }
-
-} // class Node
+}

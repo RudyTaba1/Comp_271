@@ -22,6 +22,7 @@ public class BackwardsWord {
                 i = 0;
                 j++;
             }
+            reverb =  temp + " " + words[0] +" "+ words[1] +" " + words[2]+ " " + words[3];
         }
         return reverb;
     }
@@ -37,7 +38,9 @@ public class BackwardsWord {
     }
 
     public static void main (String[] args){
+
+        System.out.println(everyOtherWordBackwards("Boy these loops are hard!"));
         
-        System.out.println(isRight(3,4,5));
+        
     }
 }
