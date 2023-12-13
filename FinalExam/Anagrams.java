@@ -13,7 +13,17 @@ public class Anagrams {
    *         false otherwise or if either string is null
    */
   public static boolean areAnagrams(String first, String second) {
-    boolean theyAre = true;
+    boolean theyAre = false;
+    first = first.toLowerCase();
+    second = second.toLowerCase();
+    if(first.length() == second.length()){
+      for(int i = 0; i < first.length(); i++){
+        if(/*second.indexOf(first.charAt(i)) < 0*/ first.charAt(i) != second.charAt(i)){
+          return theyAre;
+        }
+      }
+      theyAre = true;
+    }
     return theyAre;
   } // method areAnagrams
 }

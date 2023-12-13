@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "FinalExam.Main",
+            "projectName": "Java_Projects_d95d7fbb"
+        },
+        {
+            "type": "java",
             "name": "BackwardsWord",
             "request": "launch",
             "mainClass": "WeekNine.BackwardsWord",
