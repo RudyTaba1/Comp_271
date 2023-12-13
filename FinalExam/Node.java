@@ -41,8 +41,15 @@ public class Node {
    * @param howMany int number of nodes this node is expected to have after it
    */
   public boolean hasNext(int howMany) {
-    return true;
-  } // method hasNext(int)
+    Node current = this;
+
+    for (int i = 0; i < howMany && current != null; i++) {
+        current = current.getNext();
+    }
+
+    return current != null;
+}
+ // method hasNext(int)
 
   /**
    * Get a node's next node.
@@ -60,8 +67,19 @@ public class Node {
    * @return Node after so many hops or null if end of list
    */
   public Node getNext(int howMany) {
-        return this;
-  } // method getNext(int)
+    Node current = this;
+
+    if (howMany < 0 || current == null) {
+        return current; 
+    }
+
+    for (int i = 0; i <= howMany && current != null; i++) {
+        current = current.getNext(); 
+    }
+
+    return current;
+}
+ // method getNext(int)
 
   /**
    * Obtain a node's data content (its payload)
