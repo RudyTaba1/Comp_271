@@ -13,17 +13,36 @@ public class Anagrams {
    *         false otherwise or if either string is null
    */
   public static boolean areAnagrams(String first, String second) {
-    boolean theyAre = false;
+    boolean theyAre = true; 
+
+    //converts both strings to lowercase
     first = first.toLowerCase();
     second = second.toLowerCase();
-    if(first.length() == second.length()){
-      for(int i = 0; i < first.length(); i++){
-        if(/*second.indexOf(first.charAt(i)) < 0*/ first.charAt(i) != second.charAt(i)){
-          return theyAre;
+
+    //arrays for each string
+    int[] firstArray = new int[26];
+    int[] secondArray = new int[26];
+
+    if (first.length() == second.length()) {
+        // Count how often each character shows up in each string
+        for (int i = 0; i < first.length(); i++) {
+            firstArray[first.charAt(i) - 'a']++;
+            secondArray[second.charAt(i) - 'a']++;
         }
-      }
-      theyAre = true;
+
+        // how often the same character shows in both strings
+        for (int j = 0; j < 26; j++) {
+            if (firstArray[j] != secondArray[j]) {
+                theyAre = false; 
+                 
+            }
+        }
+    } else {
+        theyAre = false; 
+        // different lengths, can't be anagrams
     }
+
     return theyAre;
+
   } // method areAnagrams
 }
