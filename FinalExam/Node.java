@@ -42,11 +42,12 @@ public class Node {
    */
   public boolean hasNext(int howMany) {
     Node current = this;
-
+    //loops through the list until the end or the desired node is reached
+    //basically does what getNext(int) does but returns a boolean
     for (int i = 0; i < howMany && current != null; i++) {
         current = current.getNext();
     }
-
+    // if the desired node is reached, return true
     return current != null;
 }
  // method hasNext(int)
@@ -69,10 +70,12 @@ public class Node {
   public Node getNext(int howMany) {
     Node current = this;
 
+    // in case user enters a negative number or the current node is null
     if (howMany < 0 || current == null) {
         return current; 
     }
 
+    // loop through the list until the end or the desired node is reached
     for (int i = 0; i <= howMany && current != null; i++) {
         current = current.getNext(); 
     }

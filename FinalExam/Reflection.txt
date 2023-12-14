@@ -1,0 +1,27 @@
+Professor,
+
+Before I begin, I appreciate the opprotunity to complete this reflection and discuss my performance this semester.
+Looking into my feedback log, I notice a common reoccurance of error in optimization and clean code. This is something that I intend
+to continue working on improving, and have done over the last assignments.  In regards to time given to assignments,
+there are moments where I do not give myself enough time to get work done, and I definitely find myself behind and lost. That being said, I've been good about limiting those kinds of 
+situations, as I haven't missed any assignments since homework three. What I have seen myself doing, especially as the semester neared its end, was missing the peer reviews. 
+These were not intentional, but they did happen. I find the peer reviews to be really important and help me clean up an optimize my code. As for class attendance, every since week 13, it
+has been rough. Due to the commute and other travel-related issues, coming to class on time was very difficult. I came in when I could; that being said, having that zoom option when it was
+open was very helpful. 
+
+During the course of the semester, ontop of the content we learned in regards to data structures, I learned how to program. COMP 170 was one of those classes that you take, 
+with the one goal being to pass. Now, any course you take should be passed, yes, but it's not the primary goal. The primary goal is to learn what is being taught, not just repeating 
+what was lectured at you. In COMP 170, everything is structured to essencially copy-paste everything that was lectured, and so you're not really learning
+as much as you are repeating. What COMP 271 gave me the ability to do because of the Ungrading model, as well as the unique way the material was taught, was to learn and practice programming
+styles I otherwise would never see, let alone pay attention to. Because I wasn't worried about getting points off on an exam or an assignment, I had the ability to experiment with how to program,
+not just what to program. It's something I greatly appreciate.
+
+Conceptually, I understand most of the topics we discussed. The topics I find the most confusing for myself are hashtables. I understand that they're kind of like linked lists in that
+they use the same pointer node, where one node points to another node, and that finds the information we're looking for, but how that is different from linking a string to an integer,
+like in a hashmap, I don't really know. The more that I use these tools in the Java Collection Framework, the more I'll figure out those differences. 
+
+Overall, if I were to rate myself grade wise, I'd give myself a B.  Although my class attendance was not superb, I believe that I have a firm grasp on the topics 
+that were taught throughout this semester and I've grown a lot since assignment 1. This class has taught me many things, alongside the frequently used data structures in java and I would
+take this class again for it's very unique teaching style and the way information was conveyed during the lectures.
+
+Thank you for this opprotunity and I hopefully will have you as a professor, again.
