@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Tutor",
+            "request": "launch",
+            "mainClass": "WeekNine.Tutor",
+            "projectName": "Comp_271_5bdfcfd1"
+        },
+        {
+            "type": "java",
             "name": "BackwardsWord",
             "request": "launch",
             "mainClass": "WeekNine.BackwardsWord",
