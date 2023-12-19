@@ -13,9 +13,11 @@ public class Anagrams {
    *         false otherwise or if either string is null
    */
 
+   //SOLUTION:
+
    private static final int LETTERS_IN_ALPHABET = 26;
 
-   
+
    public static boolean areAnagrams(String first, String second) {
     // This is a guard statement that can justify an extra return false 
     boolean theyAre = first != null && second != null && first.length() == second.length();
@@ -40,6 +42,7 @@ public class Anagrams {
     return theyAre;
   } // method areAnagrams
   
+  //STUDENT ANSWER:
   /*public static boolean areAnagrams(String first, String second) {
     boolean theyAre = true; 
 

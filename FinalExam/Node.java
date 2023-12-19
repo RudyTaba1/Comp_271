@@ -41,7 +41,12 @@ public class Node {
    * @param howMany int number of nodes this node is expected to have after it
    */
   public boolean hasNext(int howMany) {
-    Node current = this;
+    //SOLUTION:
+    return this.getNext(howMany) != null;
+  }// method hasNext(int)
+    
+  //STUDENT ANSWER:
+    /*Node current = this;
     //loops through the list until the end or the desired node is reached
     //basically does what getNext(int) does but returns a boolean
     for (int i = 0; i < howMany && current != null; i++) {
@@ -50,7 +55,7 @@ public class Node {
     // if the desired node is reached, return true
     return current != null;
 }
- // method hasNext(int)
+ // method hasNext(int)*/
 
   /**
    * Get a node's next node.
@@ -67,7 +72,20 @@ public class Node {
    * @param howMany int with the number of nodes to skip
    * @return Node after so many hops or null if end of list
    */
+
+   //SOLUTION:
   public Node getNext(int howMany) {
+    Node current = this;
+    int count = 0;
+    while (count < howMany && current != null) {
+      current = current.getNext();
+      count++;
+    }
+    return current;
+  } // method getNext(int)
+  
+  //MY ANSWER:
+   /*public Node getNext(int howMany) {
     Node current = this;
 
     // in case user enters a negative number or the current node is null
@@ -83,6 +101,7 @@ public class Node {
     return current;
 }
  // method getNext(int)
+*/
 
   /**
    * Obtain a node's data content (its payload)
