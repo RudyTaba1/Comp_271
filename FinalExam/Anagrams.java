@@ -12,7 +12,35 @@ public class Anagrams {
    * @return true if first and second strings are anagrams of eachother,
    *         false otherwise or if either string is null
    */
-  public static boolean areAnagrams(String first, String second) {
+
+   private static final int LETTERS_IN_ALPHABET = 26;
+
+   
+   public static boolean areAnagrams(String first, String second) {
+    // This is a guard statement that can justify an extra return false 
+    boolean theyAre = first != null && second != null && first.length() == second.length();
+    // If block below executes if input strings are legit
+    if (theyAre) {
+      // Set up a counter for every letter in the alphabet
+      int[] letterCount = new int[LETTERS_IN_ALPHABET];
+      for (int index = 0; index < first.length(); index++) {
+        // Increase corresponding counter if letter appears in first string
+        int fromFirst = (int) first.toUpperCase().charAt(index) - (int) 'A';
+        letterCount[fromFirst] += 1;
+        // Decrease corresponding counter if letter appears in first string
+        int fromSecond = (int) second.toUpperCase().charAt(index) - (int) 'A';
+        letterCount[fromSecond] -= 1;
+      }
+      // Traverse the counter array; stop as soon as non zero is found
+      int i = 0;
+      while (i<letterCount.length && theyAre) {
+        theyAre = letterCount[i++] == 0;
+      }
+    }
+    return theyAre;
+  } // method areAnagrams
+  
+  /*public static boolean areAnagrams(String first, String second) {
     boolean theyAre = true; 
 
     //converts both strings to lowercase
@@ -44,5 +72,5 @@ public class Anagrams {
 
     return theyAre;
 
-  } // method areAnagrams
+  } // method areAnagrams*/
 }
