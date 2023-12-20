@@ -6,10 +6,10 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Tutor",
+            "name": "Main",
             "request": "launch",
-            "mainClass": "WeekNine.Tutor",
-            "projectName": "Comp_271_5bdfcfd1"
+            "mainClass": "FinalExam.Main",
+            "projectName": "Java_Projects_d95d7fbb"
         },
         {
             "type": "java",
