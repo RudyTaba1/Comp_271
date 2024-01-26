@@ -7,3 +7,5 @@
 *.class
 /Reflection.txt
 /Tutor.java
+#ignore tutoring directory
+/tutoring/*
