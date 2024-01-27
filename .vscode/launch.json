@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Scrambler",
+            "request": "launch",
+            "mainClass": "tutoring.Scrambler",
+            "projectName": "Comp_271_5bdfcfd1"
+        },
+        {
+            "type": "java",
             "name": "Main",
             "request": "launch",
             "mainClass": "FinalExam.Main",
